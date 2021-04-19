@@ -1,9 +1,14 @@
-import React from 'react';
-import { Text, View, TextInput, TouchableOpacity, Image, FlatList, ImageBackground } from 'react-native';
+import React, { useState } from 'react';
+import { Text, View, TouchableOpacity, Image, FlatList, ScrollView, Modal } from 'react-native';
 import styles from './style';
-import {Feather} from '@expo/vector-icons';
+import {Feather ,Ionicons, MaterialIcons, FontAwesome5, AntDesign} from '@expo/vector-icons';
+import {useNavigation} from "@react-navigation/native"
+import style from './style';
 
-export default function App({navigation}) {
+export default function App({ route }) {
+
+  const navigation = useNavigation();
+  const [modalVisible, setModalVisible] = useState(false);
 
   const fakeData = [
     {
@@ -39,76 +44,147 @@ export default function App({navigation}) {
     navigation.navigate("companyList");
     
   }
-
-  const [value, setValue] = React.useState("Pesquisar")
-  
-  const onFocus = () => {
-
-    setValue({value: ""})
-
-  }
-
   const image = { uri: "https://i.pinimg.com/564x/93/16/64/93166451fc4aa37d08f871fc8524adca.jpg"}
+
+  const [categoryText, setCategory] = useState(route.params?.info);
+  
+
+  const handleCategory = (value) => {
+    setCategory(value);
+    setModalVisible(false);
+  }
   
   return (
 
     <View style={styles.container}>
-      <ImageBackground source={require("../../assets/bg_svg.png")} style={styles.bg_header}>
-        <View style={styles.content}>
-            <View style={styles.headerContainer}>
-              <View style={styles.header}>
-                    {
-                    //botao para retornar a tela anterior
-                    //Colocar no onPress a ação de navegar entre páginas
-                    }
-                    <TouchableOpacity 
-                      style={styles.detailsButton}
-                      onPress={handleBackPress}
+      <ScrollView style={styles.scroll}>
+        {/*<ImageBackground source={require("../../../assets/bg_svg.png")} style={styles.bg_header}>
+        </ImageBackground>*/}
+          <View style={styles.content}>
+              <View style={styles.headerContainer}>
+                <View style={styles.header}>
+                      {
+                      //botao para retornar a tela anterior
+                      //Colocar no onPress a ação de navegar entre páginas
+                      }
+                      <TouchableOpacity 
+                        style={styles.detailsButton}
+                        onPress={handleBackPress}
+                        
+                      >
+                        <Feather name="arrow-left" size={36} color="#7F51CF"/>
+                      </TouchableOpacity>
+                      <TouchableOpacity 
+                        style={{marginRight: 40, marginTop: 15}}
+                        onPress={() => (setModalVisible(true))}
+                        
+                      >
+                        <Feather name="menu" size={36} color="#7F51CF"/>
+                      </TouchableOpacity>
                       
+                  </View>
+                    <View style={styles.alignCenter}>
+                      <Text style={styles.titleStyle}>Categoria Escolhida:</Text>
+                      <Text style={styles.text}>{categoryText}</Text>            
+                    </View>
+              </View>
+            </View>
+
+            {/**Modal Menu*/}
+            <Modal
+             visible={modalVisible}
+             style={styles.modal}
+             animationType="slide"
+            >
+
+              <View style={styles.modal}>
+
+                <View style={styles.buttonContainer}>
+                  
+                  <TouchableOpacity 
+                    style={styles.buttonModal}
+                    onPress={() => setModalVisible(false)}
                     >
-                      <Feather name="arrow-left" size={36} color="#7F51CF"/>
+                    <AntDesign name="close" size={35} color="#7F51CF" />
+                  </TouchableOpacity>
+                  <Text style={styles.text}>Escolha uma categoria</Text>
+
+                    <TouchableOpacity onPress={() => handleCategory("Moda")}>  
+                      <View style={styles.category}>
+                        <Image style={styles.icon} source={require("../../../assets/roupas.png")}/>
+
+                        <Text style={styles.textStyle}>Categoria Moda</Text>
+                      </View>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity onPress={() => handleCategory("Alimentos")}>
+                      <View style={styles.category}>
+                        <Ionicons style={styles.icon} name="ios-fast-food-outline" size={40}color="white" />
+
+                        <Text style={styles.textStyle}>Categoria Alimentos</Text>
+                      </View>
+                    </TouchableOpacity>
+
+                  
+                    <TouchableOpacity onPress={() => handleCategory("Tecnologia")}>
+                      <View style={styles.category}>
+                        <MaterialIcons style={styles.icon} name="computer" size={40} color="white" />
+
+                        <Text style={styles.textStyle}>Categoria Tecnologia</Text>
+                      </View>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity onPress={() => handleCategory("Estética")}>
+                      <View style={styles.category}>
+                        <Image style={styles.icon} source={require("../../../assets/maquiagem.png")}/>
+
+                        <Text style={styles.textStyle}>Categoria Estética</Text>
+                      </View>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity onPress={() => handleCategory("Outro")}>
+                      <View style={styles.category}>
+                        <FontAwesome5 style={styles.icon} name="building" size={40} color="white" />
+
+                        <Text style={styles.textStyle}>Categoria Outro</Text>
+                      </View>
                     </TouchableOpacity>
                 </View>
-                  <Text style={styles.textStyle}>Categoria escolhida</Text>
-                  <TextInput 
-                    style={styles.input}
-                    onFocus={onFocus}
-                    value={value}
-                  />
-            </View>
-          </View>
-        
-      </ImageBackground>
-      
-      
-      <FlatList 
-          data={fakeData}
-          style={styles.companyList}
-          showsVerticalScrollIndicator = {false}
-          renderItem={( {item } ) => (
-
-            //botao para abrir a tela de informação da empresa
-            //Colocar no onPress a ação de navegar entre páginas
-            <TouchableOpacity onPress={handleNextPress}>
-              <View style={styles.company}> 
-                  
-                    <View>
-                      <Image style={styles.image} source={image} />
-                    </View>
-                    <View style={styles.textCompany}>
-                      <Text style={styles.companyName}>{item.nomeEmpresa}</Text>
-                      <Text style={styles.companyValue}>{item.description}</Text>
-                    </View>
-                    
-                
               </View>
-            </TouchableOpacity>
+            </Modal>
 
-          )}
+            
+         
+          <FlatList 
+              data={fakeData}
+              style={styles.companyList}
+              showsVerticalScrollIndicator = {false}
+              renderItem={( {item } ) => (
 
-          keyExtractor={(item, index) => index.toString()}
-    
-      />
+                //botao para abrir a tela de informação da empresa
+                //Colocar no onPress a ação de navegar entre páginas
+                <TouchableOpacity style={styles.alignCenter} onPress={handleNextPress}>
+                  <View style={styles.company}> 
+        
+                        <View>
+                          <Image style={styles.image} source={image} />
+                        </View>
+                        <View style={styles.textCompany}>
+                          <Text style={styles.companyName}>{item.nomeEmpresa}</Text>
+                          <Text style={styles.companyValue}>{item.description}</Text>
+                          <MaterialIcons style={styles.alignEnd} name="keyboard-arrow-right" size={30} color="#7F51CF" />
+                        </View>
+                        
+                    
+                  </View>
+                </TouchableOpacity>
+
+              )}
+
+              keyExtractor={(item, index) => index.toString()}
+        
+          />
+      </ScrollView>
     </View>
   );
 }

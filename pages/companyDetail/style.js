@@ -19,53 +19,98 @@ export default StyleSheet.create({
     color: "#c2c2c2",
     marginTop: 10,
   },
-  textStyle: {
-    color: "#ffff",
+  titleStyle: {
+    color: "#000",
     fontSize: 25,
     fontWeight: "bold",
     padding: 20,  
-    marginTop: 20,
+    marginTop: 30,
+
+  },
+  text: {
+    color: "#000",
+    fontSize: 25,
+    fontWeight: "bold",
+    marginLeft: 20,
+    marginTop: -10,
+    marginBottom: 30
 
   },
   header: {
     flexDirection: "row",
     marginLeft: 20,
     paddingTop: Constants.statusBarHeight + 20,
-
+  },
+  buttonContainer: {
+    justifyContent: "center",
+    alignItems: "center",
+    flexDirection: "column",
+    padding: 20
+  },
+  category: {
+    width: 358,
+    height: 88,
+    backgroundColor: "#7F51CF",
+    padding: 20,
+    alignItems: "center",
+    alignSelf: "center",
+    marginBottom: 5,
+    borderRadius: 5,
+    flexDirection: "row"
+  },
+  textStyle: {
+    color: "#ffff",
+    fontSize: 18,
+    fontWeight: "bold",
    
+
+  },
+
+  icon: {
+    width: 40,
+    height: 40,
+    marginBottom: 5,
+    marginLeft: 25,
+    marginRight: 25,
   },
   content:{
-    backgroundColor: "#212330",
+    //backgroundColor: "#212330",
     width: "100%",
-    alignItems: 'center',
+    textAlign: "center",
     height: 300,
+    justifyContent: "center",
   },
   detailsButton: {
     flex: 1,
     alignSelf: "flex-end",
+    marginTop: 20
   },
 
   companyList: {
-    marginTop: 32,
+    marginTop: 15,
   },
   company:{
     flexDirection: 'row',
     padding: 24,
-    borderRadius: 30,
-    backgroundColor: '#7F51CF',
-    marginBottom: 16,
-    width: 387,
+    backgroundColor: '#E3E3E3',
+    marginBottom: 18,
+    width: 367,
+    
+    borderRadius: 10,
     justifyContent: "space-between",
+    borderColor: "#7F51CF",
+    borderLeftWidth: 5,
+    
   },
 
   companyName: {
     fontSize: 18,
-    color: "#ffff",
+    color: "#000",
     fontWeight: "bold"
   },
 
   companyValue: {
-    color: "#DEDEDE",
+    color: "#1f1f1f",
     width: 250
   },
   textCompany:{
@@ -73,14 +118,43 @@ export default StyleSheet.create({
   },
 
   image: {
-    width: 63,
-    height: 63,
-    borderRadius: 50
+    width: 53,
+    height: 53,
+    borderRadius: 50,
   },
+
   bg_header:{
     width: "100%",
     height: 400,
-    marginBottom: 20
-  }
+    marginTop: -30
+  },
 
+  scroll: {
+    width: "100%",
+  },
+
+  alignCenter: {
+    flexDirection: "column",
+    alignSelf: "center",
+    justifyContent: "center"
+  },
+  alignEnd: {
+    flexDirection: "row",
+    alignSelf: "flex-end",
+    marginTop: 6
+  },
+  modal: {
+    flex: 1,
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#DEDEDE",
+    padding: 20,
+    height: 200
+    
+  },
+  buttonModal:{
+    flex: 1,
+    alignSelf: "flex-end",
+  }
 });
