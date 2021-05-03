@@ -149,8 +149,7 @@ export default StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "#DEDEDE",
-    padding: 20,
-    height: 200
+    padding: 20
     
   },
   buttonModal:{

@@ -11,9 +11,9 @@ export default function App({navigation}) {
 
   }
 
-  const handleNextPress = () => {
+  const handleNextPress = (category) => {
 
-    navigation.navigate("companyDetail");
+    navigation.navigate("companyDetail", {category: category});
 
   }
   
@@ -44,7 +44,7 @@ export default function App({navigation}) {
            //Group one
          }
           <View style={styles.categories}>
-            <TouchableOpacity onPress={handleNextPress}>  
+            <TouchableOpacity onPress={() => handleNextPress('Moda')}>  
               <View style={styles.category}>
                 <Image style={styles.icon} source={require("../../assets/roupas.png")}/>
                 <Text style={styles.categoryText}>Moda</Text>
@@ -53,10 +53,10 @@ export default function App({navigation}) {
             </TouchableOpacity>
             
 
-            <TouchableOpacity onPress={handleNextPress}>
+            <TouchableOpacity onPress={() => handleNextPress('Alimentação')}>
               <View style={styles.category}>
                 <Ionicons style={styles.icon} name="md-fast-food-outline" size={40} color="white" />
-                <Text style={styles.categoryText}>Alimentos</Text>
+                <Text style={styles.categoryText}>Alimentação</Text>
               </View>
             </TouchableOpacity>
 
@@ -67,7 +67,7 @@ export default function App({navigation}) {
           }
 
           <View style={styles.categories}>
-            <TouchableOpacity onPress={handleNextPress}>
+            <TouchableOpacity onPress={() => handleNextPress('Tecnologia')}>
               <View style={styles.category}>
                 <MaterialIcons style={styles.icon} name="computer" size={40} color="white" />
                 <Text style={styles.categoryText}>Tecnologia</Text>
@@ -75,10 +75,10 @@ export default function App({navigation}) {
               </View>
             </TouchableOpacity>
 
-            <TouchableOpacity onPress={handleNextPress}>
+            <TouchableOpacity onPress={() => handleNextPress('Cosméticos')}>
               <View style={styles.category}>
                 <Image style={styles.icon} source={require("../../assets/maquiagem.png")}/>
-                <Text style={styles.categoryText}>Moda</Text>
+                <Text style={styles.categoryText}>Cosméticos</Text>
                 
               </View>
             </TouchableOpacity>
@@ -90,7 +90,7 @@ export default function App({navigation}) {
           }  
 
           <View style={styles.categories}>
-            <TouchableOpacity onPress={handleNextPress}>
+            <TouchableOpacity onPress={() => handleNextPress('Outro')}>
               <View style={styles.category}>
                 <FontAwesome5 style={styles.icon} name="building" size={40} color="white" />
                 <Text style={styles.categoryText}>Outro</Text>
