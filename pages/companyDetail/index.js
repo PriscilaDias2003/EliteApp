@@ -4,6 +4,7 @@ import styles from './style';
 import {Feather ,Ionicons, MaterialIcons, FontAwesome5, AntDesign} from '@expo/vector-icons';
 import {useNavigation} from "@react-navigation/native"
 import style from './style';
+import { roundToNearestPixel } from 'react-native/Libraries/Utilities/PixelRatio';
 
 export default function App({ route }) {
 
@@ -46,12 +47,12 @@ export default function App({ route }) {
   }
   const image = { uri: "https://i.pinimg.com/564x/93/16/64/93166451fc4aa37d08f871fc8524adca.jpg"}
 
-  const [categoryText, setCategory] = useState(route.params?.info);
+  const [categoryText, setCategory] = useState(route.params.category);
   
 
   const handleCategory = (value) => {
     setCategory(value);
-    setModalVisible(false);
+    setModalVisible(!modalVisible);
   }
   
   return (
@@ -84,7 +85,7 @@ export default function App({ route }) {
                       
                   </View>
                     <View style={styles.alignCenter}>
-                      <Text style={styles.titleStyle}>Categoria Escolhida:</Text>
+                      <Text style={styles.titleStyle}>Categoria: </Text>
                       <Text style={styles.text}>{categoryText}</Text>            
                     </View>
               </View>
@@ -103,7 +104,7 @@ export default function App({ route }) {
                   
                   <TouchableOpacity 
                     style={styles.buttonModal}
-                    onPress={() => setModalVisible(false)}
+                    onPress={() => setModalVisible(!modalVisible)}
                     >
                     <AntDesign name="close" size={35} color="#7F51CF" />
                   </TouchableOpacity>
@@ -111,7 +112,7 @@ export default function App({ route }) {
 
                     <TouchableOpacity onPress={() => handleCategory("Moda")}>  
                       <View style={styles.category}>
-                        <Image style={styles.icon} source={require("../../../assets/roupas.png")}/>
+                        <Image style={styles.icon} source={require("../../assets/roupas.png")}/>
 
                         <Text style={styles.textStyle}>Categoria Moda</Text>
                       </View>
@@ -136,7 +137,7 @@ export default function App({ route }) {
 
                     <TouchableOpacity onPress={() => handleCategory("Estética")}>
                       <View style={styles.category}>
-                        <Image style={styles.icon} source={require("../../../assets/maquiagem.png")}/>
+                        <Image style={styles.icon} source={require("../../assets/maquiagem.png")}/>
 
                         <Text style={styles.textStyle}>Categoria Estética</Text>
                       </View>

@@ -1,50 +1,35 @@
-import React from 'react';
-import { Text, View, TouchableOpacity, Image, ScrollView, ImageBackground, Alert , Linking } from 'react-native';
+import React, { useState , useEffect } from 'react';
+import { Text, View, TouchableOpacity, Image, ScrollView, ImageBackground, Alert , Linking , FlatList } from 'react-native';
 import styles from './style';
-import {Feather} from '@expo/vector-icons';
+import {Feather , FontAwesome} from '@expo/vector-icons';
 
 export default function App({navigation}) {
 
+  //handlers
   const handleBackPress = () => {
-
     navigation.navigate("companyDetail");
-
   }
-
   const handleCallPress = () => {
-
-    Linking.openURL("tel:+5511952786197");
-    
+    Linking.openURL("tel:+5511952202923");
   }
-
   const handleInstagramPress = () => {
-
     Linking.openURL("https://instagram.com");
-    
   }
-
   const handleSitePress = () => {
-
-    
-    
+    Linking.openURL("https://")
   }
-
   const handleMapsPress = () => {
-
-    
-    
+    navigation.navigate('mapScreen')
   }
-
   const handleWhatsAppPress = () => {
-
-    Linking.openURL("https://wa.me/+5511952786197");
-    
+    Linking.openURL("https://wa.me/+5511952202923");
   }
   
   const image = { uri: "https://i.pinimg.com/564x/93/16/64/93166451fc4aa37d08f871fc8524adca.jpg"}
-  
-  return (
 
+  //Interface
+
+  return (
     <View style={styles.container}>
       <ScrollView style={styles.scroll}>
         
@@ -64,6 +49,7 @@ export default function App({navigation}) {
             </View>
               <Image style={styles.image} source={image}/>
               <Text style={styles.textStyle}>Nome empresa</Text>
+              
         </View>
       
       </ImageBackground>
