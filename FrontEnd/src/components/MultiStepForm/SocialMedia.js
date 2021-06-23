@@ -7,7 +7,7 @@ export default function SocialMedia(props){
     const history = useHistory();
 
     function handleSubmit(){
-        
+        history.push('/info');
     }
     const back = e => {
         e.preventDefault();
