@@ -8,10 +8,10 @@ import logoImg from '../../assets/elite_logo.png';
 import loginImg from '../../assets/loginImg.png';
 
 export default function Logon(){
-    /*const [id, setId] = useState('');
-
     const history = useHistory();
-
+    
+    /*const [id, setId] = useState('');
+    
     async function handleLogin(e){
         e.preventDefault();
 
@@ -29,9 +29,9 @@ export default function Logon(){
 
     }*/
 
-    async function handleLogin(e){
-
-    }
+     function handleLogin(e){
+        history.push('/info');
+     }
 
     return(
         <div className="container">
